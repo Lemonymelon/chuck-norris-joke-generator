@@ -7,9 +7,20 @@ export const getRandomJokes = (
   lastName,
   excludeCategories
 ) => {
-  const url = baseUrl + "/1";
-  axios.get(baseUrl).then((response) => {
-    console.log(response);
-    // console.log(jokes);
-  });
+  const url = `${baseUrl}/${quantity}`;
+
+  return axios
+    .get(url, {
+      params: {
+        firstName,
+        lastName,
+        excludeCategories,
+      },
+    })
+    .then((response) => {
+      const {
+        data: { value },
+      } = response;
+      return value;
+    });
 };
