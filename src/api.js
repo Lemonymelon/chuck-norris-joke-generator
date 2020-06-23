@@ -5,7 +5,7 @@ export const getRandomJokes = (
   quantity = 1,
   firstName,
   lastName,
-  excludeCategories
+  excludeCategories = ["explicit"]
 ) => {
   const url = `${baseUrl}/${quantity}`;
 

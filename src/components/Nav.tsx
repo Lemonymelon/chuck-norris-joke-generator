@@ -11,7 +11,7 @@ const Nav = () => {
           <button>RANDOM</button>
         </Link>
         <Link to="bespoke">
-          <button>CUSTOM</button>
+          <button>BESPOKE</button>
         </Link>
         <Link to="/endless">
           <button>ENDLESS</button>
