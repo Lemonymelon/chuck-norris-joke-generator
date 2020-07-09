@@ -16,6 +16,9 @@ const RandomJoke = () => {
             isNovel = true;
             setJokeIDHistory([...jokeIDHistory, id]);
             setCurrentJoke(joke);
+          } else {
+            console.log("NOT UNIQUE");
+            // double check unique mechanism works
           }
         }
       }
@@ -23,7 +26,7 @@ const RandomJoke = () => {
   };
 
   return (
-    <div>
+    <div id="randomJokeContainer" className="jokeContainer">
       <div>{currentJoke}</div>
       <button onClick={handleGetSingleJoke}>CLICK</button>
     </div>

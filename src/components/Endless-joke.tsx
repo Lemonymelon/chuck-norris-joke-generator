@@ -8,9 +8,11 @@ const EndlessJoke = () => {
   const [jokes, setJokes] = useState<string[]>([]);
   const [jokeIDHistory, setJokeIDHistory] = useState<number[]>([]);
 
+  // console.log(jokes);
+
   const handleGetMultipleJokes = (
     numberOfJokes: number,
-    jokeArray: string[]
+    jokeArray: string[] = []
   ) => {
     getRandomJokes(numberOfJokes)
       .then((jokeObjectArray: jokeObject[]) => {
@@ -24,6 +26,8 @@ const EndlessJoke = () => {
       .then(() => {
         const diff: number = numberOfJokes - jokeArray.length;
         if (diff) {
+          console.log("!!!");
+
           getRandomJokes(diff, jokeArray);
         } else {
           setJokes([...jokes, ...jokeArray]);
@@ -32,13 +36,13 @@ const EndlessJoke = () => {
   };
 
   return (
-    <div>
+    <div id="endlessJokeContainer" className="jokeContainer">
       {!showJokes ? (
         <div>
           <button
             onClick={() => {
-              handleGetMultipleJokes(5, []);
-              setShowJokes(true);
+              handleGetMultipleJokes(100);
+              // setShowJokes(true);
             }}
           >
             BEGIN

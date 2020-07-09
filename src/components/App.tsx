@@ -7,10 +7,11 @@ import {
 } from "react-router-dom";
 import { RandomJoke, BespokeJoke, EndlessJoke } from "../components/index";
 import Nav from "./Nav";
+import "../styles/App.css";
 
 const App = () => {
   return (
-    <div>
+    <div className="app">
       <h1>title</h1>
       <Router>
         <Nav />

@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <div>
-      {/* whole nav */}
-      <div>
-        {/* button area */}
+    <div className="nav">
+      <div className="nav__buttons">
         <Link to="/random">
           <button>RANDOM</button>
         </Link>
