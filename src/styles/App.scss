@@ -1,5 +1,14 @@
+@import "./reset.scss";
+@import "./tokens.scss";
+
+.app {
+  background-color: #ccc;
+  width: 100%;
+}
 .nav {
-  background-color: rgb(177, 47, 47);
+  // background-color: rgb(177, 47, 47);
+  border-bottom: solid 3px $navBarBlue;
+
   &__buttons {
     margin: 0 auto;
     max-width: 300px;

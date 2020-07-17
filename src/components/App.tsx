@@ -12,7 +12,7 @@ import "../styles/App.css";
 const App = () => {
   return (
     <div className="app">
-      <h1>title</h1>
+      <div>title</div>
       <Router>
         <Nav />
         <Switch>

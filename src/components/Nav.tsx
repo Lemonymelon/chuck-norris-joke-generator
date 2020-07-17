@@ -6,13 +6,13 @@ const Nav = () => {
     <div className="nav">
       <div className="nav__buttons">
         <Link to="/random">
-          <button>RANDOM</button>
+          <div>RANDOM</div>
         </Link>
         <Link to="bespoke">
-          <button>BESPOKE</button>
+          <div>BESPOKE</div>
         </Link>
         <Link to="/endless">
-          <button>ENDLESS</button>
+          <div>ENDLESS</div>
         </Link>
       </div>
     </div>

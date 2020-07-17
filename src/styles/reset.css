@@ -132,26 +132,4 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-.app {
-  background-color: #ccc;
-  width: 100%;
-}
-
-.nav {
-  border-bottom: solid 3px #0494cd;
-}
-
-.nav__buttons {
-  margin: 0 auto;
-  max-width: 300px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-/*# sourceMappingURL=App.css.map */
+/*# sourceMappingURL=reset.css.map */
