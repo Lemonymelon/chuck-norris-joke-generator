@@ -10,12 +10,13 @@ const RandomJoke = () => {
   const handleGetSingleJoke = () => {
     getRandomJokes().then(([{ id, joke }]: jokeObject[]) => {
       let isNovel = false;
+
       while (!isNovel) {
         if (id && joke) {
           if (!includes(id, jokeIDHistory)) {
             isNovel = true;
             setJokeIDHistory([...jokeIDHistory, id]);
-            setCurrentJoke(joke);
+            setCurrentJoke(joke.replace(/(&quot\;)/g, '"'));
           } else {
             console.log("NOT UNIQUE");
             // double check unique mechanism works
@@ -27,8 +28,10 @@ const RandomJoke = () => {
 
   return (
     <div id="randomJokeContainer" className="jokeContainer">
-      <div>{currentJoke}</div>
-      <button onClick={handleGetSingleJoke}>CLICK</button>
+      <div className="jokeContainer__button" onClick={handleGetSingleJoke}>
+        CLICK
+      </div>
+      <div className="jokeContainer__jokeText">{currentJoke}</div>
     </div>
   );
 };

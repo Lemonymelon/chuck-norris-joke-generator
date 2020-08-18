@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <div className="nav">
-      <div className="nav__buttons">
+      <div className="nav__buttonsWrapper">
         <Link to="/random">
-          <div>RANDOM</div>
+          <div className="nav__button">Random</div>
         </Link>
         <Link to="bespoke">
-          <div>BESPOKE</div>
+          <div className="nav__button">Bespoke</div>
         </Link>
         <Link to="/endless">
-          <div>ENDLESS</div>
+          <div className="nav__button">Endless</div>
         </Link>
       </div>
     </div>

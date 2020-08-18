@@ -1,22 +1,64 @@
 @import "./reset.scss";
 @import "./tokens.scss";
 
+#CNJG {
+  background-color: $backgroundGray;
+  height: 100vh;
+}
+
 .app {
-  background-color: #ccc;
-  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  background-color: $backgroundWhite;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: $medium-breakpoint;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 .nav {
   // background-color: rgb(177, 47, 47);
   border-bottom: solid 3px $navBarBlue;
 
-  &__buttons {
+  &__buttonsWrapper {
     margin: 0 auto;
     max-width: 300px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
+
+  &__button {
+    margin: 8px auto;
+    font-size: 16px;
+
+    &:hover {
+      margin: 4px auto;
+
+      font-size: 20px;
+    }
+  }
 }
 
 .jokeContainer {
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+
+  &__button {
+    border: solid 3px black;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: pink;
+    margin: 10px auto;
+    width: auto;
+    cursor: pointer;
+  }
+
+  &__jokeText {
+    margin: 0 auto;
+    width: auto;
+  }
 }
