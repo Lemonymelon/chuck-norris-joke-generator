@@ -5,16 +5,22 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { RandomJoke, BespokeJoke, EndlessJoke } from "../components/index";
+import {
+  RandomJoke,
+  BespokeJoke,
+  EndlessJoke,
+  Footer,
+} from "../components/index";
 import Nav from "./Nav";
 import "../styles/App.css";
 
 const App = () => {
   return (
     <div className="app">
-      <div>title</div>
+      <div>Chuck Norris Joke Generator</div>
       <Router>
         <Nav />
+
         <Switch>
           <Redirect exact from="/" to="/random" />
           <Route exact path="/random" component={RandomJoke} />
@@ -22,6 +28,7 @@ const App = () => {
           <Route exact path="/endless" component={EndlessJoke} />
         </Switch>
       </Router>
+      <Footer />
     </div>
   );
 };
