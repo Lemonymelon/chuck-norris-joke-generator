@@ -7,7 +7,7 @@
     "bundle": "webpack",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open --hot",
-    "test": "jest --watch  ./tests",
+    "test": "jest --watch --verbose ./tests",
     "reset": "rm -rf node_modules && rm yarn.lock && yarn install"
   },
   "dependencies": {

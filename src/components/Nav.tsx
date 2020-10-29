@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <div className="nav">
+    <nav className="nav">
       <div className="nav__buttonsWrapper">
         <Link to="/random">
           <div className="nav__button">Random</div>
@@ -15,7 +15,7 @@ const Nav = () => {
           <div className="nav__button">Endless</div>
         </Link>
       </div>
-    </div>
+    </nav>
   );
 };
 

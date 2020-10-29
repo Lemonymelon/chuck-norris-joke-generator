@@ -17,7 +17,7 @@ import "../styles/App.css";
 const App = () => {
   return (
     <div className="app">
-      <div>Chuck Norris Joke Generator</div>
+      <h1>Chuck Norris Joke Generator</h1>
       <Router>
         <Nav />
 
