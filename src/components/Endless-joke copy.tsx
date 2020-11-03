@@ -8,32 +8,45 @@ const EndlessJoke = () => {
   const [jokes, setJokes] = useState<string[]>([]);
   const [jokeIDHistory, setJokeIDHistory] = useState<number[]>([]);
 
+  console.log("JIDH", jokeIDHistory.length);
+
   const handleGetMultipleJokes = (
-    numberOfJokesRequired: number,
-    originalNumberOfJokesRequired: number,
+    // runningIDHistory
+    numberOfJokes: number,
     jokeArray: string[] = []
   ) => {
-    getRandomJokes(numberOfJokesRequired)
+    console.log("---HANDLE---");
+    // console.log(jokeArray);
+
+    getRandomJokes(numberOfJokes)
       .then((jokeObjectArray: jokeObject[]) => {
         const uniqueIDArray: number[] = [];
         jokeObjectArray.forEach(({ id, joke }: jokeObject) => {
+          // console.log(id);
           if (!includes(id, jokeIDHistory)) {
             uniqueIDArray.push(id);
-            jokeArray.push(joke.replace(/(&quot\;)/g, '"'));
+            jokeArray.push(joke);
           }
         });
+        console.log("GRJJIDH", jokeIDHistory.length);
 
         setJokeIDHistory([...jokeIDHistory, ...uniqueIDArray]);
       })
       .then(() => {
-        const diff: number = originalNumberOfJokesRequired - jokeArray.length;
+        const diff: number = numberOfJokes - jokeArray.length;
         if (diff > 0) {
-          handleGetMultipleJokes(
-            diff,
-            originalNumberOfJokesRequired,
-            jokeArray
-          );
+          // console.log("!!!");
+          // console.log("NOJ: ", numberOfJokes);
+          // console.log("JAL: ", jokeArray.length);
+
+          // console.log("DIFF: ", diff);
+
+          // jokeIDHistory must be passed in addition to state ID history
+
+          handleGetMultipleJokes(diff, jokeArray);
         } else {
+          // setJokes will always ONLY fire here
+          console.log("NOT");
           setJokes([...jokes, ...jokeArray]);
         }
       });
@@ -41,23 +54,20 @@ const EndlessJoke = () => {
 
   return (
     <div id="endlessJokeContainer" className="jokeContainer">
-      <button
-        className="jokeContainer__button"
-        onClick={() => {
-          handleGetMultipleJokes(100, 100);
-          setShowJokes(true);
-        }}
-      >
-        BEGIN
-      </button>
       {!showJokes ? (
-        <div></div>
-      ) : (
         <div>
-          {jokes.map((joke: string, index) => {
-            return <div key={index}>{joke}</div>;
-          })}
+          <button
+            onClick={() => {
+              console.log("-----CLICK-----");
+              handleGetMultipleJokes(100);
+              // setShowJokes(true);
+            }}
+          >
+            BEGIN
+          </button>
         </div>
+      ) : (
+        <div>JOKES</div>
       )}
     </div>
   );

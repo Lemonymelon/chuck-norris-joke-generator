@@ -25,8 +25,10 @@ const BespokeJoke = () => {
             if (!includes(id, jokeIDHistory)) {
               isNovel = true;
               setJokeIDHistory([...jokeIDHistory, id]);
-              setCurrentJoke(joke);
+              setCurrentJoke(joke.replace(/(&quot\;)/g, '"'));
             }
+          } else {
+            break;
           }
         }
       }
@@ -34,6 +36,12 @@ const BespokeJoke = () => {
   };
   return (
     <div id="bespokeJokeContainer" className="jokeContainer">
+      <button
+        className="jokeContainer__button"
+        onClick={handleGetSingleBespokeJoke}
+      >
+        CLICK
+      </button>
       <div>{currentJoke}</div>
       <input
         onChange={(e) => {
@@ -45,8 +53,6 @@ const BespokeJoke = () => {
           handleOnChange(e.target.value, setLastName);
         }}
       ></input>
-
-      <button onClick={handleGetSingleBespokeJoke}>CLICK</button>
     </div>
   );
 };

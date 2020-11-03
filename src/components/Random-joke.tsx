@@ -18,8 +18,7 @@ const RandomJoke = () => {
             setJokeIDHistory([...jokeIDHistory, id]);
             setCurrentJoke(joke.replace(/(&quot\;)/g, '"'));
           } else {
-            console.log("NOT UNIQUE");
-            // double check unique mechanism works
+            break;
           }
         }
       }
@@ -28,7 +27,6 @@ const RandomJoke = () => {
 
   return (
     <div id="randomJokeContainer" className="jokeContainer">
-
       <div className="jokeContainer__button" onClick={handleGetSingleJoke}>
         CLICK
       </div>

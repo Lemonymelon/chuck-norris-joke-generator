@@ -22,7 +22,7 @@ describe("App", () => {
     const wrapper = mount(<App />);
     expect(wrapper.find("nav").exists()).toBe(true);
   });
-  // nav contains buttons
+  // nav contains buttons   
 
   // contains body
   it("renders a main joke container", () => {
