@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { getRandomJokes } from "../api";
-import { includes } from "../utils/es6Methods";
 import { jokeObject } from "../utils/interfaces";
 
 const BespokeJoke = () => {
   const [currentJoke, setCurrentJoke] = useState("");
-  const [jokeIDHistory, setJokeIDHistory] = useState<number[]>([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -17,19 +15,10 @@ const BespokeJoke = () => {
   };
 
   const handleGetSingleBespokeJoke = () => {
-    getRandomJokes(1, firstName, lastName).then(
+    getRandomJokes(1, firstName || "Chuck", lastName || "Norris").then(
       ([{ id, joke }]: jokeObject[]) => {
-        let isNovel = false;
-        while (!isNovel) {
-          if (id && joke) {
-            if (!includes(id, jokeIDHistory)) {
-              isNovel = true;
-              setJokeIDHistory([...jokeIDHistory, id]);
-              setCurrentJoke(joke.replace(/(&quot\;)/g, '"'));
-            }
-          } else {
-            break;
-          }
+        if (id && joke) {
+          setCurrentJoke(joke.replace(/(&quot\;)/g, '"'));
         }
       }
     );
@@ -42,7 +31,6 @@ const BespokeJoke = () => {
       >
         CLICK
       </button>
-      <div>{currentJoke}</div>
       <input
         onChange={(e) => {
           handleOnChange(e.target.value, setFirstName);
@@ -53,6 +41,7 @@ const BespokeJoke = () => {
           handleOnChange(e.target.value, setLastName);
         }}
       ></input>
+      <div>{currentJoke}</div>
     </div>
   );
 };

@@ -61,6 +61,7 @@ img {
 
 .app > h1 {
   margin: 0 auto;
+  text-align: center;
 }
 
 .app a {
@@ -128,6 +129,21 @@ img {
   margin: 0 auto;
   width: auto;
   text-align: center;
+}
+
+.jokeContainer__siblingJoke {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid rgba(110, 110, 110, 0.315) 0.25px;
+  border-top: solid rgba(110, 110, 110, 0.315) 0.25px;
+}
+
+.jokeContainer__siblingJoke:first-of-type {
+  border-top: none;
+}
+
+.jokeContainer__siblingJoke:last-of-type {
+  border-bottom: none;
 }
 
 .footer {

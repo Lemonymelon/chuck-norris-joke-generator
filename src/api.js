@@ -22,5 +22,8 @@ export const getRandomJokes = (
         data: { value },
       } = response;
       return value;
+    })
+    .catch((error) => {
+      throw error;
     });
 };
