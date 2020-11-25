@@ -45,7 +45,7 @@ const BespokeJoke = () => {
         labelText="Enter last name:"
       />
 
-      <div>{currentJoke}</div>
+      <div className="jokeContainer__jokeText">{currentJoke}</div>
     </div>
   );
 };

@@ -14,6 +14,26 @@ Enzyme.configure({ adapter: new ReactSixteenAdapter() });
 const { shallow, mount } = Enzyme;
 
 describe("App", () => {
+  const mockData = [
+    {
+      value: [{ joke: "Chuck Norris joke A", id: 1 }],
+    },
+    {
+      value: [{ joke: "Chuck Norris joke B", id: 2 }],
+    },
+    {
+      value: [{ joke: "Chuck Norris joke C", id: 3 }],
+    },
+    {
+      value: [{ joke: "Chuck Norris joke D", id: 4 }],
+    },
+    {
+      value: [{ joke: "Chuck Norris joke E", id: 5 }],
+    },
+    {
+      value: [{ joke: "Chuck Norris joke F", id: 6 }],
+    },
+  ];
   describe("initially rendered components", () => {
     it("renders a div", () => {
       const wrapper = shallow(<App />);
@@ -40,18 +60,6 @@ describe("App", () => {
   });
 
   describe("'random' endpoint", () => {
-    const mockData = [
-      {
-        value: [{ joke: "Chuck Norris is very strong HA", id: 1 }],
-      },
-      {
-        value: [{ joke: "Chuck Norris has a face HAH", id: 2 }],
-      },
-      {
-        value: [{ joke: "Chuck Norris can fight things AHAHAHA", id: 3 }],
-      },
-    ];
-
     it("generates a new joke when the button is clicked", async () => {
       let counter = 0;
       const mock = new MockAdapter(axios);
@@ -62,16 +70,68 @@ describe("App", () => {
 
       const wrapper = mount(<App />);
       expect(wrapper.find("div.jokeContainer").exists()).toBe(true);
+      expect(wrapper.find("div#randomJokeContainer").exists()).toBe(true);
+
       expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe("");
       const button = wrapper.find("button.jokeContainer__button");
 
       await act(async () => {
         button.simulate("click");
-        wrapper.update();
       });
 
       expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe(
-        "Chuck Norris is very strong HA"
+        "Chuck Norris joke A"
+      );
+
+      mock
+        .onGet("http://api.icndb.com/jokes/random/1")
+        .reply(200, mockData[counter++]);
+
+      await act(async () => {
+        button.simulate("click");
+      });
+      expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe(
+        "Chuck Norris joke B"
+      );
+    });
+  });
+
+  describe("'bespoke' endpoint", () => {
+    it("generates a new joke when the button is clicked", async () => {
+      let counter = 0;
+      const mock = new MockAdapter(axios);
+
+      mock
+        .onGet("http://api.icndb.com/jokes/random/1")
+        .reply(200, mockData[counter++]);
+
+      const wrapper = mount(<App />);
+      const bespokeNavButton = wrapper
+        .find("div.nav__buttonsWrapper")
+        .find("a")
+        .filterWhere((aTag) => aTag.find("div").text() === "Bespoke")
+        .find("div");
+
+      await act(async () => {
+        bespokeNavButton.simulate("click", { button: 0 });
+      });
+
+      wrapper.update();
+
+      expect(wrapper.find("div.jokeContainer").exists()).toBe(true);
+      expect(wrapper.find("#bespokeJokeContainer").exists()).toBe(true);
+
+      expect(wrapper.find("div.jokeContainer__labelAndInput").length).toBe(2);
+
+      expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe("");
+      const button = wrapper.find("button.jokeContainer__button");
+
+      await act(async () => {
+        button.simulate("click");
+      });
+
+      expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe(
+        "Chuck Norris joke A"
       );
 
       mock
@@ -83,16 +143,11 @@ describe("App", () => {
         wrapper.update();
       });
       expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe(
-        "Chuck Norris has a face HAH"
+        "Chuck Norris joke B"
       );
+      // add spies to assert functions have been called with coorect args
     });
   });
-
-  // -----
-
-  // default route is random endpoint
-  // button click generates text
-  // subsequent button click replaces text in same div
 
   // -----
 
