@@ -101,7 +101,7 @@ img {
 
 .jokeContainer {
   position: relative;
-  background-color: rgba(68, 221, 208, 0.664);
+  background-color: rgba(33, 235, 218, 0.486);
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
@@ -131,6 +131,20 @@ img {
 
 .jokeContainer__button:disabled {
   border-color: rgba(0, 0, 0, 0.5);
+}
+
+.jokeContainer__labelAndInput {
+  margin: 10px auto;
+}
+
+.jokeContainer__labelAndInput label {
+  text-align: center;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.jokeContainer__labelAndInput input {
+  text-align: center;
 }
 
 .jokeContainer__jokeText {

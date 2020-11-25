@@ -35,14 +35,12 @@ const BespokeJoke = () => {
 
       <LabelAndInput
         inputId="firstName"
-        inputClassName="jokeContainer__input"
         inputOnChange={(e) => handleOnChange(e.target.value, setFirstName)}
         labelText="Enter first name:"
       />
 
       <LabelAndInput
         inputId="lastName"
-        inputClassName="jokeContainer__input"
         inputOnChange={(e) => handleOnChange(e.target.value, setLastName)}
         labelText="Enter last name:"
       />
