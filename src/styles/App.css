@@ -122,7 +122,14 @@ img {
   background-color: pink;
   margin: 10px auto;
   width: auto;
+}
+
+.jokeContainer__button:enabled {
   cursor: pointer;
+}
+
+.jokeContainer__button:disabled {
+  border-color: rgba(0, 0, 0, 0.5);
 }
 
 .jokeContainer__jokeText {

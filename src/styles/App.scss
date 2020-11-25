@@ -65,7 +65,12 @@
     background-color: pink;
     margin: 10px auto;
     width: auto;
-    cursor: pointer;
+    &:enabled {
+      cursor: pointer;
+    }
+    &:disabled {
+      border-color: rgba(0, 0, 0, 0.5);
+    }
   }
 
   &__jokeText {

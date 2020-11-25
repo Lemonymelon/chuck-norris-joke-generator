@@ -7,7 +7,6 @@ const EndlessJoke = () => {
   const [showJokes, setShowJokes] = useState(false);
   const [jokes, setJokes] = useState<string[]>([]);
   const [jokeIDHistory, setJokeIDHistory] = useState<number[]>([]);
-  const [buttonText, setButtonText] = useState("BEGIN");
 
   const getMultipleJokes = (
     numberOfJokesRequired: number,
@@ -36,17 +35,33 @@ const EndlessJoke = () => {
       });
   };
 
-  const handleClick = () => {
+  const handleClickJoke = () => {
     getMultipleJokes(5, 5);
-    if (!showJokes) setShowJokes(true);
-    if (buttonText !== "MORE") setButtonText("MORE");
+    if (!showJokes) {
+      setShowJokes(true);
+    }
+  };
+
+  const handleClickReset = () => {
+    setShowJokes(false);
+
+    setJokeIDHistory([]);
+    setJokes([]);
   };
 
   return (
     <div id="endlessJokeContainer" className="jokeContainer">
-      <button className="jokeContainer__button" onClick={handleClick}>
-        {buttonText}
+      <button className="jokeContainer__button" onClick={handleClickJoke}>
+        {showJokes ? "MORE" : "BEGIN"}
       </button>
+      <button
+        className={`jokeContainer__button`}
+        {...(showJokes && { onClick: handleClickReset })}
+        disabled={showJokes ? false : true}
+      >
+        RESET
+      </button>
+      {/* conditional reset logic - css, click functionality, cursor */}
       {!showJokes ? (
         <div className="jokeContainer__jokeText"></div>
       ) : (
