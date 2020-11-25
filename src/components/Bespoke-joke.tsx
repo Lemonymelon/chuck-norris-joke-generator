@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getRandomJokes } from "../api";
 import { jokeObject } from "../utils/interfaces";
+import LabelAndInput from "./Label-and-input";
 
 const BespokeJoke = () => {
   const [currentJoke, setCurrentJoke] = useState("");
@@ -31,16 +32,21 @@ const BespokeJoke = () => {
       >
         CLICK
       </button>
-      <input
-        onChange={(e) => {
-          handleOnChange(e.target.value, setFirstName);
-        }}
-      ></input>
-      <input
-        onChange={(e) => {
-          handleOnChange(e.target.value, setLastName);
-        }}
-      ></input>
+
+      <LabelAndInput
+        inputId="firstName"
+        inputClassName="jokeContainer__input"
+        inputOnChange={(e) => handleOnChange(e.target.value, setFirstName)}
+        labelText="Enter first name:"
+      />
+
+      <LabelAndInput
+        inputId="lastName"
+        inputClassName="jokeContainer__input"
+        inputOnChange={(e) => handleOnChange(e.target.value, setLastName)}
+        labelText="Enter last name:"
+      />
+
       <div>{currentJoke}</div>
     </div>
   );
