@@ -28,12 +28,10 @@ describe("App", () => {
       expect(wrapper.find("nav").exists()).toBe(true);
     });
 
-
     it("renders a main joke container", () => {
       const wrapper = mount(<App />);
       expect(wrapper.find("div.jokeContainer").exists()).toBe(true);
     });
-
 
     it("renders a footer", () => {
       const wrapper = mount(<App />);
@@ -42,14 +40,26 @@ describe("App", () => {
   });
 
   describe("'random' endpoint", () => {
-    const mockData = {
-      value: [{ joke: "Chuck Norris is very strong HA", id: 1 }],
-    };
-    beforeEach(() => {
+    const mockData = [
+      {
+        value: [{ joke: "Chuck Norris is very strong HA", id: 1 }],
+      },
+      {
+        value: [{ joke: "Chuck Norris has a face HAH", id: 2 }],
+      },
+      {
+        value: [{ joke: "Chuck Norris can fight things AHAHAHA", id: 3 }],
+      },
+    ];
+
+    it("generates a new joke when the button is clicked", async () => {
+      let counter = 0;
       const mock = new MockAdapter(axios);
-      mock.onGet("http://api.icndb.com/jokes/random/1").reply(200, mockData);
-    });
-    it("generates a joke when the button is clicked", async () => {
+
+      mock
+        .onGet("http://api.icndb.com/jokes/random/1")
+        .reply(200, mockData[counter++]);
+
       const wrapper = mount(<App />);
       expect(wrapper.find("div.jokeContainer").exists()).toBe(true);
       expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe("");
@@ -63,8 +73,19 @@ describe("App", () => {
       expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe(
         "Chuck Norris is very strong HA"
       );
+
+      mock
+        .onGet("http://api.icndb.com/jokes/random/1")
+        .reply(200, mockData[counter++]);
+
+      await act(async () => {
+        button.simulate("click");
+        wrapper.update();
+      });
+      expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe(
+        "Chuck Norris has a face HAH"
+      );
     });
-    // ask Raf - best way to program multiple mock responses - check that text gets replaced
   });
 
   // -----
