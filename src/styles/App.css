@@ -101,7 +101,7 @@ img {
 
 .jokeContainer {
   position: relative;
-  background-color: #84e984;
+  background-color: rgba(68, 221, 208, 0.664);
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
@@ -113,6 +113,7 @@ img {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 0 20px;
+  overflow-y: hidden;
 }
 
 .jokeContainer__button {
@@ -138,6 +139,10 @@ img {
   text-align: center;
 }
 
+.jokeContainer__jokeTextScroll {
+  overflow-y: scroll;
+}
+
 .jokeContainer__siblingJoke {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -154,7 +159,7 @@ img {
 }
 
 .footer {
-  background-color: #dd4141;
+  background-color: #4122f0c5;
   width: 100%;
   text-align: center;
   padding: 2px;

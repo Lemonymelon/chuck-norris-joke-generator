@@ -61,11 +61,10 @@ const EndlessJoke = () => {
       >
         RESET
       </button>
-      {/* conditional reset logic - css, click functionality, cursor */}
       {!showJokes ? (
         <div className="jokeContainer__jokeText"></div>
       ) : (
-        <div>
+        <div className="jokeContainer__jokeTextScroll">
           {jokes.map((joke: string, index) => {
             return (
               <div
