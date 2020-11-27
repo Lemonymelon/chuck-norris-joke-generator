@@ -21,9 +21,12 @@ export const getRandomJokes = (
       const {
         data: { value },
       } = response;
+      console.log(value);
       return value;
     })
     .catch((error) => {
+      // console.log(error);
+
       throw error;
     });
 };

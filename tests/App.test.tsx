@@ -149,17 +149,56 @@ describe("App", () => {
     });
   });
 
-  // -----
+  describe("'endless' endpoint", () => {
+    it("generates more jokes when the button is clicked", async () => {
+      let counter = 0;
+      const mock = new MockAdapter(axios);
 
-  // bespoke button takes user to different endpoint
-  // body contains two text boxes (add labels) and button
-  // generates a joke with first and last name inserted
-  // subsequent button click replaces text in same div
+      mock.onGet("http://api.icndb.com/jokes/random/5").reply(200, mockData);
 
-  // -----
+      const wrapper = mount(<App />);
+      const endlessNavButton = wrapper
+        .find("div.nav__buttonsWrapper")
+        .find("a")
+        .filterWhere((aTag) => aTag.find("div").text() === "Endless")
+        .find("div");
 
+      await act(async () => {
+        endlessNavButton.simulate("click", { button: 0 });
+      });
+
+      wrapper.update();
+
+      expect(wrapper.find("div.jokeContainer").exists()).toBe(true);
+      expect(wrapper.find("#endlessJokeContainer").exists()).toBe(true);
+
+      expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe("");
+      const generateJokeButton = wrapper.find("#generateJokeButton");
+
+      await act(async () => {
+        generateJokeButton.simulate("click");
+      });
+
+      expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe(
+        "Chuck Norris joke A"
+      );
+
+      // mock
+      //   .onGet("http://api.icndb.com/jokes/random/1")
+      //   .reply(200, mockData[counter++]);
+
+      // await act(async () => {
+      //   generateJokeButton.simulate("click");
+
+      // });
+      // expect(wrapper.find("div.jokeContainer__jokeText").text()).toBe(
+      //   "Chuck Norris joke B"
+      // );
+      // add spies to assert functions have been called with coorect args
+    });
+  });
   // endless button takes user to different endpoint
   // body contains button
-  // generates 5 jokes
+  // generates jokes
   // subsequent button click concat text in same div
 });

@@ -51,10 +51,15 @@ const EndlessJoke = () => {
 
   return (
     <div id="endlessJokeContainer" className="jokeContainer">
-      <button className="jokeContainer__button" onClick={handleClickJoke}>
+      <button
+        id="generateJokeButton"
+        className="jokeContainer__button"
+        onClick={handleClickJoke}
+      >
         {showJokes ? "MORE" : "BEGIN"}
       </button>
       <button
+        id="resetButton"
         className={`jokeContainer__button`}
         {...(showJokes && { onClick: handleClickReset })}
         disabled={showJokes ? false : true}
